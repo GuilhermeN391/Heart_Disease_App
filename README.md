@@ -73,7 +73,7 @@ As métricas de avaliação foram escolhidas considerando o forte desbalanceamen
   - **chol**: Colesterol total no sangue do paciente [mg/dl, valor numérico];
   - **fbs**: índice de glicemia [1: caso o açucar no sangue > 120 mg/dl, 0: caso contrário];
   - **restecg**: Resultados do eletrocardiograma do paciente [0: Normal, 1: Anormalidade da onda ST-T (inversões da onda T e/ou elevação ou decaimento do segmento ST > 0,05 mV), 2: Apresentando uma provável ou definitiva hipertrofia ventricular esquerda pelos critérios de Estes];
-  - **thalach**: Frequência cardíaca máxima medida [Valor entre 60 and 202];
+  - **thalachh**: Frequência cardíaca máxima medida [Valor entre 60 and 202];
   - **exang**: Presença de angina recorrente de exercícios físicos [1: Sim, 0: Não];
   - **oldpeak**: Decaímento do segmento ST induzido por exercício físico em relação ao repouso [Decaímento relatado através de um valor numérico];
   - **slope**: Variação do segmento ST em  pico do exercício [0: Elevação, 1: constante, 2: Decaímento ];
@@ -82,6 +82,16 @@ As métricas de avaliação foram escolhidas considerando o forte desbalanceamen
   - **target**: variável de indicação do risco de doenças cardíadcas [1: Doente ou maior propensão a doenças cardíacas, 0: Normal ou chances baixas de doenças cardíacas].
 
 Após o tratamento de dados, com os passos indicados pelo [Heart Disease Prediction](https://github.com/maxim-eyengue/Heart-Disease-App), o Dataset total para treinamento e teste do modelo consiste em **519** amostras que serão divididas em **80%** para treino e **20%** para teste, com valores totais para cada grupo apresentados em seguida. Valor o qual foi decorrente da presença alta de catalogações de pacientes repedidas, além da presença de dados inconsistentes indicado através do tratamento feito que foram desconsiderados para a implementação do modelo.
+
+### Resumo do Dataset original
+
+| Aspecto | Informação |
+|---------|------------|
+| Total de cadastros | 2.181 |
+| Features | 13  |
+| Valores nulos | Nenhum |
+| Classe normal (0) | 1.099 (50,39%) |
+| Classe fraude (1) | 1.082 (49,61%) |
 
 ### Dados de Avaliação
 
@@ -95,3 +105,28 @@ Após o tratamento de dados, com os passos indicados pelo [Heart Disease Predict
 - **Tamanho**: 415 instâncias após remoção de outliers;
 - **Características**: As 13 features originais estratificavas, resultando na adição de 7 features;
 - **Desbalanceamento original**: 1,35:1 (normais:doentes).
+
+## Visualizações
+
+As seguintes visualizações estão disponíveis no notebook:
+
+
+## Tabelas Adicionais
+
+### Top 5 Features Correlacionadas com Fraude
+
+| Feature | Correlação |
+|---------|------------|
+| thal | 	0,533 |
+| slope | 0,400 |
+| cp | 0,378 |
+| ca | 0,352 |
+| thalachh | 0,242 |
+
+
+## Principais Observações da Análise Exploratória
+
+Observações feitas com a Análise Exploratória de Dados da biblioteca Pandas profiling.
+
+- **Classe alvo balanceada**: 49,61% dos pacientes tem indicativo de doença;
+- **Uma feature com alta correlação**: a feature "thal" isolada é forte preditora de doença; 
