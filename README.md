@@ -89,7 +89,8 @@ Após o tratamento de dados, com os passos indicados pelo [Heart Disease Predict
 |---------|------------|
 | Total de cadastros | 2.181 |
 | Features | 13  |
-| Valores nulos | Nenhum |
+| Classe alvo | "target"  |
+| Valores nulos | 1.231 (4.0%)|
 | Classe normal (0) | 1.099 (50,39%) |
 | Classe fraude (1) | 1.082 (49,61%) |
 
@@ -103,17 +104,19 @@ Após o tratamento de dados, com os passos indicados pelo [Heart Disease Predict
 
 - **Conjunto de dados**: Arquivos CSV contendo as informações dos pacientes;
 - **Tamanho**: 415 instâncias após remoção de outliers;
-- **Características**: As 13 features originais estratificavas, resultando na adição de 7 features;
+- **Características**: As 13 features originais estratificadas, resultando na adição de 7 features, totalizando 20 features;
 - **Desbalanceamento original**: 1,35:1 (normais:doentes).
 
 ## Visualizações
 
 As seguintes visualizações estão disponíveis no notebook:
 
-
+1. **Distribuição das classes**  
+   ![Distribuição da classe alvo](images/class_distribution.png)
+   
 ## Tabelas Adicionais
 
-### Top 5 Features Correlacionadas com Fraude
+### Top 5 Features Correlacionadas com o alvo
 
 | Feature | Correlação |
 |---------|------------|
