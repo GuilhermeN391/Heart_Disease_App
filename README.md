@@ -111,8 +111,21 @@ Após o tratamento de dados, com os passos indicados pelo [Heart Disease Predict
 
 As seguintes visualizações estão disponíveis no notebook:
 
-1. **Distribuição das classes**  
-   ![Distribuição da classe alvo](images/class_distribution.png)
+**1.** Visualizações da Análise Exporatória de Dados
+
+1.1. **Distribuição das classes**  
+   ![Distribuição da classe alvo](images/target.png)
+   
+1.2. **Correlação entre variáveis**  
+   ![Mapa de Correlação](images/corr_map.png)
+
+**2.** Visualizações da Avaliação do modelo
+
+2.1 **Matriz de Confusão**  
+   ![Mapa de Correlação](images/conf_matrix.png)
+
+2.2 **Linha de Probrabilidades**  
+   ![Mapa de Correlação](images/prob_line.png)
    
 ## Tabelas Adicionais
 
