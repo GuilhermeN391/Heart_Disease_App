@@ -118,6 +118,28 @@ Como indicado, há features com valores altos de dados inconsistentes, em quatro
 - **Características**: As 13 features originais estratificadas, resultando na adição de 7 features, totalizando 20 features;
 - **Desbalanceamento original**: 1,35:1 (normais:doentes).
 
+
+### Análises Quantitativas
+
+Resultados com threshold = 0,5:
+
+| Métrica | Valor |
+|---------|-------|
+| Acurácia | 0,7885 |
+| Precisão | 0,7292 |
+| Recall | 0,7955 |
+| Especificidade | 0,7833 |
+| F1-Score | 0,7609 |
+| AUC-ROC | 0,8523 |
+
+### Considerações Éticas e Recomendações
+
+- O modelo foi treinado com dados anônimos de pacientes;
+- Considerações de privacidade foram levadas em conta no desenvolvimento;
+- Buscar incrementos de dados ao DataSet trabalho, visando aprimorar o modelo com mais dados e reduzir a percentual de dados não utilizados no modelo;
+- O modelo deve ser monitorado continuamente e retreinado periodicamente para capturar novas previsões de doença cardíaca;
+- Trabalhos futuros: testar modelos mais complexos, como redes neurais com multicamadas.
+
 ## Visualizações
 
 As seguintes visualizações estão disponíveis no notebook:
@@ -129,6 +151,12 @@ As seguintes visualizações estão disponíveis no notebook:
    
 1.2. **Correlação entre variáveis**  
    ![Mapa de Correlação](images/corr_map.png)
+
+1.3. **Detalhes das features mais correlatas**
+
+As três features mais correlatas com a "target" foram: Thal, Slope e CP. Para obter mais detalhes de suas relações com o indicativo de doença, foram gerados os seus respectivos gráficos de contagem relacionados com a classe "target".
+
+   ![Classe correlatas](images/Target_thal_slope_cp.png)
 
 **2.** Visualizações do treinamento do modelo
 
@@ -159,9 +187,49 @@ As seguintes visualizações estão disponíveis no notebook:
 | thalachh | 0,242 |
 
 
-## Principais Observações da Análise Exploratória
+## Principais Observações do projeto
 
 Observações feitas com a Análise Exploratória de Dados da biblioteca Pandas profiling.
 
 - **Classe alvo balanceada**: 49,61% dos pacientes tem indicativo de doença;
-- **Uma feature com alta correlação**: a feature "thal" isolada é forte preditora de doença; 
+- **Implicação na engenharia de atributos**: Uma vez que a classe alvo está balanceada, não há necessidade de algum tratamento específicos nos dados do problema;
+- **Uma feature com alta correlação**: a feature "thal" isolada é forte preditora de doença;
+- **Resultados do treinamento**: Para o threshold padrão de 0.5, o modelo entregou boas métricas de avaliação para o DataSet trabalhado, dadas as suas características;
+
+## Como usar o modelo
+
+```python
+# Exemplo de código para carregar e usar o modelo treinado
+import torch
+from torch import nn
+
+# Carregar o modelo
+input_dim = 20  # Número de features após engenharia de atributos
+model = nn.Sequential(
+    nn.Linear(input_dim, 1)
+)
+model.load_state_dict(torch.load("modelo_regressao_logistica.pth"))
+model.eval()
+
+# Função para preprocessar novas entradas
+def preprocess(data):
+    # Implementar o mesmo preprocessamento usado no treinamento
+    # ...
+    return preprocessed_data
+
+# Função para detectar propensão a doença cardíaca
+def detectar_doenca(dados_paciente, threshold=0.5):
+    preprocessed = preprocess(dados_paciente)
+    with torch.no_grad():
+        output = model(preprocessed)
+        prob = 1 / (1 + torch.exp(-output))
+        return prob.item() >= threshold
+```
+
+## Referências
+
+1. Eyengue, M. J. B. (2024). Heart Disease Prediction Project. GitHub. https://github.com/maxim-eyengue/Heart-Disease-App
+
+2. Dantas da Silva, I. M. (2023). PPGEEC2318 - Week05c: Architecture class for PyTorch. GitHub. https://github.com/ivanovitchm/PPGEEC2318/blob/main/lessons/week05/week05c.ipynb
+
+3. Dantas da Silva, I. M. (2023). PPGEEC2318 - Week02: Fundamentals of ML and Decision Trees. GitHub. https://github.com/ivanovitchm/ppgeecmachinelearning/tree/main/lessons/week_02
