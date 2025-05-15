@@ -94,6 +94,17 @@ Após o tratamento de dados, com os passos indicados pelo [Heart Disease Predict
 | Classe normal (0) | 1.099 (50,39%) |
 | Classe fraude (1) | 1.082 (49,61%) |
 
+### Perdas de dados
+
+Como indicado, há features com valores altos de dados inconsistentes, em quatro delas foi identificado, na etapa de Análise Exploratória de Dados, valores altos de inconsistência. 
+
+| Feature | Dados perdidos |
+|---------|------------|
+| cp | 252 (11,6%) |
+| slope | 209 (9,6%) |
+| ca | 319 (14,6%) |
+| thal | 416 (19,1%)|
+
 ### Dados de Avaliação
 
 - **Conjunto de dados**: Conjunto de teste (20% do dataset original);
@@ -119,13 +130,21 @@ As seguintes visualizações estão disponíveis no notebook:
 1.2. **Correlação entre variáveis**  
    ![Mapa de Correlação](images/corr_map.png)
 
-**2.** Visualizações da Avaliação do modelo
+**2.** Visualizações do treinamento do modelo
 
-2.1 **Matriz de Confusão**  
-   ![Mapa de Correlação](images/conf_matrix.png)
+2.1. **Evolução das perdas**  
+   ![Distribuição da classe alvo](images/loss_fig.png)
+   
+**3.** Visualizações da Avaliação do modelo
 
-2.2 **Linha de Probrabilidades**  
-   ![Mapa de Correlação](images/prob_line.png)
+3.1 **Matriz de Confusão**  
+   ![Matriz de Confusão](images/conf_matrix.png)
+
+3.2 **Linha de Probrabilidades**  
+   ![Linha de Probabilidades](images/prob_line.png)
+
+3.3 **Curvas ROC e Precision-Recall**  
+   ![ROC e Precision-Recall](images/ROC_PR.png)
    
 ## Tabelas Adicionais
 
